@@ -92,33 +92,6 @@ APK 面向 Android 8.0+ 的 ARM64 手机。界面、Go 服务和 Python 执行�
 
 构建命令不自动执行 `npm run check`，发布前请单独运行检查。界面回归脚本位于 `scripts/qa/`，使用本机 Edge；`navigation.cjs` 需要先启动本机服务，`tasks.cjs` 自行启动隔离服务。手机 Python 离线检查使用本机 `.cache/mobile-python-tests/` 中准备好的依赖，这些依赖不会随源码上传。
 
-## 上传 GitHub 的范围
-
-**网页上传推荐使用整理后的 `release/github-upload/`，上传其中的内容，使 `README.md` 位于仓库根目录。网页手动上传不会应用 `.gitignore`，不要直接拖入整个工作目录。**
-
-```sh
-npm run export:github
-```
-
-导出命令不需要安装 npm 依赖。它按白名单复制源码及公开文档，排除账号、工具、依赖、构建产物、研究记录和原始测试截图；再次执行会替换旧的 `release/github-upload/`，请在项目源码中修改文件。
-
-| 路径 | 是否上传 | 说明 |
-| --- | --- | --- |
-| `frontend/` | 上传源码 | 保留 `src/`、`public/` 和构建配置，排除依赖与生成文件 |
-| `backend/` | 上传源码 | 保留 `cmd/`、`internal/`、`go.mod`、`go.sum`，排除编译产物 |
-| `android/` | 上传源码 | 保留 Java、Python、资源和 Gradle 配置，排除缓存、`build/`、`local.properties`、`jniLibs/` |
-| `scripts/` | 上传 | 构建、启动、检查和源码导出脚本；本机测试工具另行准备 |
-| `docs/usage.md`、`docs/github-upload.md`、`docs/screenshots/` | 上传 | 公开说明与已检查的模拟数据截图 |
-| 根目录文件 | 上传 | `README.md`、`.gitignore`、`package.json`、`package-lock.json` |
-| `data/` | 不上传 | 账号、模型 API Key、任务配置及加密密钥 |
-| `tool/`、`work/`、`.tools/` | 不上传 | 原始 APK、本地工具和研究材料 |
-| `.cache/`、`node_modules/`、`dist/` | 不上传 | 依赖、缓存、签名密钥和生成产物 |
-| `docs/research/`、`docs/testing/`、`docs/design/` | 不上传 | 研究报告、实机验证记录及未经逐一检查的截图草稿 |
-| `release/` | 不整体上传 | APK 可单独发布到 GitHub Releases；源码目录只上传其内部内容 |
-| `.env*`、Cookie、私钥、签名文件、日志、抓包 | 不上传 | 环境变量示例 `.env.example` / `.env.sample` 可保留，必须使用示例值 |
-
-通过 Git 提交时保留 `.gitignore`，并在暂存前检查文件清单。忽略规则不会移除已经跟踪的文件。初始化、检查和上传步骤见[GitHub 上传说明](docs/github-upload.md)。
-
 ## 项目结构与来源
 
 ```text
