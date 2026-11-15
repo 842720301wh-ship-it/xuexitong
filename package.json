@@ -1,0 +1,25 @@
+{
+  "name": "tiantianxiangshang",
+  "version": "0.2.0",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "android": {
+    "displayName": "天天向上",
+    "versionCode": 2
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace frontend",
+    "start": "node scripts/start.mjs",
+    "build": "node scripts/build.mjs",
+    "build:web": "npm run build --workspace frontend",
+    "build:desktop": "node scripts/build.mjs --desktop",
+    "build:android": "node scripts/build.mjs --android",
+    "check": "npm run typecheck --workspace frontend && node scripts/check.mjs",
+    "export:github": "node scripts/export-github.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.58.2"
+  }
+}

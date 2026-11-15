@@ -1,0 +1,28 @@
+/* Equal-width steps keep labels from changing connector length or alignment. */
+.task-page .task-steps {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+  padding:0;margin:2px 0 24px;list-style:none;color:#99a4b3;font-size:11px;
+}
+.task-page .task-steps li {
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  justify-content:flex-start;gap:9px;min-width:0;line-height:1.5;
+}
+.task-page .task-steps li+li:before { content:none }
+.task-page .task-steps li:not(:last-child):after {
+  content:'';position:absolute;left:calc(50% + 20px);top:11px;
+  width:calc(100% - 40px);height:2px;background:#e0e5ec;border-radius:2px;
+}
+.task-page .task-steps li.done:after {background:#9aa6b7}
+.task-page .task-steps .step-index {
+  width:24px;height:24px;border:1px solid #dce3ec;background:#fafbfc;
+  display:grid;place-items:center;border-radius:50%;font-size:11px;line-height:1;
+}
+.task-page .task-steps .step-label {
+  display:block;width:auto;height:auto;border:0;border-radius:0;
+  background:none;font-size:11px;line-height:1.5;color:inherit;white-space:nowrap;
+}
+.task-page .task-steps .active {color:#353b46;font-weight:600}
+.task-page .task-steps .active .step-index {background:#353b46;border-color:#353b46;color:#fff}
+.task-page .task-steps .done {color:#748295}
+.task-page .task-steps .done .step-index {border-color:#9aa6b7;color:#64758c;background:#eef2f6}
+.task-page .task-steps + .task-panel {margin-top:0}
